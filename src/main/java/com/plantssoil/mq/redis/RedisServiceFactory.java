@@ -70,7 +70,7 @@ public class RedisServiceFactory implements IMessageServiceFactory {
 
 	@Override
 	public void close() throws Exception {
-//		this.heartbeat.close();
+		this.heartbeat.shutdown();
 		if (this.consumers != null) {
 			for (MessageConsumer consumer : this.consumers) {
 				consumer.close();
