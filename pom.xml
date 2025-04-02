@@ -10,7 +10,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version.project>1.0.0</version.project>
+		<version.project>1.0.1</version.project>
 		<version.java>11</version.java>
 
 		<!-- External Dependencies -->
