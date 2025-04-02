@@ -21,30 +21,21 @@ Key Classes：
 
 	<dependencies>
 		<dependency>
-			<groupId>io.lettuce</groupId>
-			<artifactId>lettuce-core</artifactId>
-			<version>6.5.0.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.18.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.18.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-			<version>2.18.2</version>
+			<groupId>com.plantssoil</groupId>
+			<artifactId>lettuce-redis-mq</artifactId>
+			<version>1.0.1</version>
 		</dependency>
 	</dependencies>
 
-### Add lettuce-redis-mq-x.x.x.jar into your Java Project build library
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub plantssoil Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/plants-soil/lettuce-redis-mq</url>
+		</repository>
+	</distributionManagement>
 
-### Done, and enjoy!
+### Save your pom.xml, and enjoy!
 
 ## Example 1: Send and receive String message (ChannelType.QUEUE)
 Lettuce Redis MQ could support String as message body, simple String or JSON String etc.
