@@ -35,7 +35,7 @@ class MessageQueueTest {
 
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
-		threadpool.close();
+		threadpool.shutdown();
 	}
 
 	@Test
