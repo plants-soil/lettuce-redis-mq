@@ -7,9 +7,9 @@ The messages could be received and consumed by every consumer as TOPIC, when the
 
 Key Classes：
 
-- com.webiz.utils.mq.IMessageServiceFactory, Used to create message publisher and message consumer
-- com.webiz.utils.mq.IMessagePublisher, Created by IMessageServiceFactory, used to send message
-- com.webiz.utils.mq.IMessageConsumer, Created by IMessageServiceFactory, used to receive and consume message
+- com.plantssoil.mq.IMessageServiceFactory, Used to create message publisher and message consumer
+- com.plantssoil.mq.IMessagePublisher, Created by IMessageServiceFactory, used to send message
+- com.plantssoil.mq.IMessageConsumer, Created by IMessageServiceFactory, used to receive and consume message
 
 ## Dependencies and tested
 - Lettuce Redis MQ depends on io.lettuce.lettuce-core, which is an advanced Java client for Redis that supports synchronous, asynchronous, and reactive connections.
@@ -21,30 +21,21 @@ Key Classes：
 
 	<dependencies>
 		<dependency>
-			<groupId>io.lettuce</groupId>
-			<artifactId>lettuce-core</artifactId>
-			<version>6.5.0.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.18.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.18.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-			<version>2.18.2</version>
+			<groupId>com.plantssoil</groupId>
+			<artifactId>lettuce-redis-mq</artifactId>
+			<version>1.0.1</version>
 		</dependency>
 	</dependencies>
 
-### Add lettuce-redis-mq-x.x.x.jar into your Java Project build library
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub plantssoil Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/plants-soil/lettuce-redis-mq</url>
+		</repository>
+	</distributionManagement>
 
-### Done, and enjoy!
+### Save your pom.xml, and enjoy!
 
 ## Example 1: Send and receive String message (ChannelType.QUEUE)
 Lettuce Redis MQ could support String as message body, simple String or JSON String etc.
@@ -82,7 +73,7 @@ Lettuce Redis MQ could support Java Bean (Any java bean which compliant to Jacks
 
 #### Java Bean: TestBase
 
-	package com.webiz.utils.mq;
+	package com.plantssoil.mq;
 	
 	import java.util.Date;
 	
@@ -131,7 +122,7 @@ Lettuce Redis MQ could support Java Bean (Any java bean which compliant to Jacks
 	}
 
 #### Java Bean: TestProperty
-	package com.webiz.utils.mq;
+	package com.plantssoil.mq;
 	
 	public class TestProperty {
 		private String p1;
