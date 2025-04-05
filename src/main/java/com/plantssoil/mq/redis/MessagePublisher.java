@@ -1,8 +1,9 @@
 package com.plantssoil.mq.redis;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.plantssoil.common.io.ObjectJsonSerializer;
 import com.plantssoil.mq.AbstractMessagePublisher;
 import com.plantssoil.mq.ChannelType;
-import com.plantssoil.mq.json.ObjectJsonSerializer;
 
 import io.lettuce.core.api.async.RedisAsyncCommands;
 import io.lettuce.core.pubsub.api.async.RedisPubSubAsyncCommands;
@@ -36,10 +37,18 @@ class MessagePublisher extends AbstractMessagePublisher {
 		}
 		String channel = getChannelName();
 		if (ChannelType.TOPIC == getChannelType()) {
-			this.pubsubCommand.publish(channel, ObjectJsonSerializer.getInstance().serialize(message));
+			try {
+				this.pubsubCommand.publish(channel, ObjectJsonSerializer.getInstance().serialize(message));
+			} catch (JsonProcessingException e) {
+				throw new RuntimeException(e);
+			}
 		} else {
 			// push message to the channel left end
-			this.command.lpush(channel, ObjectJsonSerializer.getInstance().serialize(message));
+			try {
+				this.command.lpush(channel, ObjectJsonSerializer.getInstance().serialize(message));
+			} catch (JsonProcessingException e) {
+				throw new RuntimeException(e);
+			}
 			this.pubsubCommand.publish(WEBIZ_QUEUE_NOTIFICATION_CHANNEL, channel);
 		}
 	}
